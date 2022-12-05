@@ -1,37 +1,31 @@
+import { useState } from 'react'
 import BotoesCard from "./BotoesCard"
 import styled from "styled-components"
 
-export default function ListaCards(){
+export default function ListaCards({}){
+const [deck, setDeck] = useState([
+        { numero: 1, question: "O que é JSX?", answer: "Uma extensão da linguagem JavaScript" },
+        { numero: 2, question: "O React é __", answer: "Uma biblioteca JavaScript para construção de interfaces" }   
+    ])      
+    
     return (
-        <ul class="lista-perguntas">
-	        <PerguntaAbert>O que é JSX? <img src="assets/seta_virar.png"/></PerguntaAbert>
-	        <PerguntaAbert>JSX é uma sintaxe para escrever HTML dentro do JS  
-                <BotoesCard />
-            </PerguntaAbert>
-	        <PerguntaFechada>
-                <TextoPergunta className="pergunta">Pergunta 3</TextoPergunta>
-                <img src="assets/seta_play.png"/>
-            </PerguntaFechada>
-            <PerguntaFechada>
-                <TextoPergunta className="certo">Pergunta 4</TextoPergunta>
-                <img src="assets/icone_certo.png"/>
-            </PerguntaFechada>
+        <ul className="lista-perguntas">
+	        {deck.map((c, index) => (
+            <BotoesCard 
+            key={index}
+            numPerg={c.numero}
+            question={c.question}
+            
+            />
+            
+            ))}
       </ul>
     )
 }
 
-const PerguntaFechada = styled.li`
-    width: 300px;
-    height: 35px;
-    background-color: #FFFFFF;
-    margin: 12px;
-    padding: 15px;
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;    
-`
+//className={`palavra-chave ${(palavraChave.length === 0) ? "esconder" : ""} ${ganhou ? "ganhou" : ""} ${perdeu ? "perdeu" : ""}`}>
+
+
 const TextoPergunta = styled.p`
     font-family: 'Recursive';
     font-style: normal;
@@ -54,7 +48,24 @@ const TextoPergunta = styled.p`
         text-decoration: line-through;
     }
 `
-const PerguntaAbert = styled.li`
+
+const PerguntaFechada = styled.li`
+    width: 300px;
+    height: 35px;
+    background-color: #FFFFFF;
+    margin: 12px;
+    padding: 15px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &.esconder {
+        display:none
+    }    
+`
+
+const PerguntaAberta = styled.li`
     width: 300px;
     margin: 12px;
     padding: 15px;

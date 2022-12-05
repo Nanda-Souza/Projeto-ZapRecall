@@ -1,12 +1,12 @@
-import { useState } from 'react'
+
 import styled from "styled-components"
-import cards from "./Deck"
 import Logo from './Logo';
 import Contador from './Contador';
 import ListaCards from './ListaCards';
 
 
 export default function App() {
+
   return (
     <ScreenContainer>
 

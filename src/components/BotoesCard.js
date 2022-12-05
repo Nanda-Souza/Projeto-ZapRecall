@@ -1,12 +1,28 @@
 import styled from "styled-components"
+import { useState } from 'react'
 
-export default function BotoesCard(){
+
+export default function BotoesCard({index, numPerg, question}){
+    const [perguntaVirada, setPerguntaVirada] = useState(true)
+    const [flashCardPerg, setflashcardPerg] = useState(true)
+
     return (
-        <ContainerBotoes>
-            <Button className="vermelho">Não lembrei</Button> 
-            <Button className="amarelo">Quase não lembrei</Button>
-            <Button className="verde">Zap!</Button>
-        </ContainerBotoes>
+    <>
+    {perguntaVirada && (
+        <PerguntaFechada className="">
+            <TextoPergunta className="pergunta">Pergunta {numPerg}</TextoPergunta>
+            <img src="assets/seta_play.png"/>
+        </PerguntaFechada>
+        )
+    }
+    {flashCardPerg && (
+        <PerguntaAberta>
+            {question}
+            <img src="assets/seta_virar.png"/>
+        </PerguntaAberta>
+        )
+    }
+    </>   
     )
 }
 
@@ -47,6 +63,65 @@ const Button = styled.button`
         border: 1px solid #2FBE34;
       }
 `
-  
-  
-  
+const PerguntaFechada = styled.li`
+width: 300px;
+height: 35px;
+background-color: #FFFFFF;
+margin: 12px;
+padding: 15px;
+box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+border-radius: 5px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+&.esconder {
+    display:none
+}    
+`
+const TextoPergunta = styled.p`
+    font-family: 'Recursive';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    &.pergunta {
+        color: #333333;
+    }        
+    &.certo {
+        color: #2FBE34;
+        text-decoration: line-through;
+    }
+    &.erro {
+        color: #FF3030;
+        text-decoration: line-through;
+    }
+    &.quase {
+        color: #FF922E;
+        text-decoration: line-through;
+    }
+`  
+const PerguntaAberta = styled.li`
+width: 300px;
+margin: 12px;
+padding: 15px;
+min-height: 100px;
+background: #FFFFD5;
+box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+border-radius: 5px;
+font-family: 'Recursive';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+color: #333333;
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+img {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;        
+}
+
+`
