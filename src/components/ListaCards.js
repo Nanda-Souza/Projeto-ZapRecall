@@ -15,6 +15,7 @@ const [deck, setDeck] = useState([
             key={index}
             numPerg={c.numero}
             question={c.question}
+            answer={c.answer}
             
             />
             

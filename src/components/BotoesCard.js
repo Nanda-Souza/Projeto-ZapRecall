@@ -2,23 +2,48 @@ import styled from "styled-components"
 import { useState } from 'react'
 
 
-export default function BotoesCard({index, numPerg, question}){
+export default function BotoesCard({index, numPerg, question, answer}){
     const [perguntaVirada, setPerguntaVirada] = useState(true)
-    const [flashCardPerg, setflashcardPerg] = useState(true)
+    const [flashCardPerg, setFlashcardPerg] = useState(false)
+    const [flashCardResp, setFlashcardResp] = useState(false)
+
+    function perguntaFlashCard(){
+        setFlashcardPerg(true);
+        setPerguntaVirada(false);
+    }
+
+    function respostaFlashCard(){
+        setFlashcardPerg(false);
+        setFlashcardResp(true);
+    }
+
+    
 
     return (
     <>
     {perguntaVirada && (
         <PerguntaFechada className="">
             <TextoPergunta className="pergunta">Pergunta {numPerg}</TextoPergunta>
-            <img src="assets/seta_play.png"/>
+            <img src="assets/seta_play.png" onClick={perguntaFlashCard}/>
         </PerguntaFechada>
         )
     }
     {flashCardPerg && (
         <PerguntaAberta>
             {question}
-            <img src="assets/seta_virar.png"/>
+            <img src="assets/seta_virar.png" onClick={respostaFlashCard}/>
+        </PerguntaAberta>
+        )
+    }
+    
+    {flashCardResp && (
+        <PerguntaAberta>
+            {answer}
+            <ContainerBotoes>
+                <Button className="vermelho">Não lembrei</Button> 
+                <Button className="amarelo">Quase não lembrei</Button>
+                <Button className="verde">Zap!</Button>
+        </ContainerBotoes>
         </PerguntaAberta>
         )
     }
@@ -74,9 +99,6 @@ border-radius: 5px;
 display: flex;
 align-items: center;
 justify-content: space-between;
-&.esconder {
-    display:none
-}    
 `
 const TextoPergunta = styled.p`
     font-family: 'Recursive';
