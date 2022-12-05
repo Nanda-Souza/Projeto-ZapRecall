@@ -1,9 +1,9 @@
 import styled from "styled-components"
 
-export default function Contador({contCards}){
+export default function Contador({contCards, contResp}){
     return (
         <FooterConcluidos>
-            0/{contCards} CONCLUÍDOS
+            {contResp}/{contCards} CONCLUÍDOS
         </FooterConcluidos>
     )
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import BotoesCard from "./BotoesCard"
 
-export default function ListaCards({deck}){
+export default function ListaCards({deck, contResp, setContResp}){
     
     
     return (
@@ -12,6 +12,8 @@ export default function ListaCards({deck}){
             numPerg={c.numero}
             question={c.question}
             answer={c.answer}
+            contResp={contResp}
+            setContResp={setContResp} 
             
             />
             
