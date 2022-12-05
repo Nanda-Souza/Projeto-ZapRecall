@@ -4,6 +4,8 @@ import { useState } from 'react'
 
 export default function BotoesCard({index, numPerg, question, answer}){
     const [perguntaVirada, setPerguntaVirada] = useState(true)
+    const [perguntaResp, setPerguntaResp] = useState(false)
+    const [statusResp, setstatusResp] = useState("")
     const [flashCardPerg, setFlashcardPerg] = useState(false)
     const [flashCardResp, setFlashcardResp] = useState(false)
 
@@ -17,6 +19,13 @@ export default function BotoesCard({index, numPerg, question, answer}){
         setFlashcardResp(true);
     }
 
+    function perguntaRespondida(resp){
+        setstatusResp(resp)
+        setPerguntaResp(true);
+        setFlashcardPerg(false);
+        setFlashcardResp(false);
+    }
+
     
 
     return (
@@ -28,6 +37,7 @@ export default function BotoesCard({index, numPerg, question, answer}){
         </PerguntaFechada>
         )
     }
+    
     {flashCardPerg && (
         <PerguntaAberta>
             {question}
@@ -40,13 +50,22 @@ export default function BotoesCard({index, numPerg, question, answer}){
         <PerguntaAberta>
             {answer}
             <ContainerBotoes>
-                <Button className="vermelho">Não lembrei</Button> 
-                <Button className="amarelo">Quase não lembrei</Button>
-                <Button className="verde">Zap!</Button>
+                <Button className="vermelho" onClick={() => perguntaRespondida("erro")} >Não lembrei</Button> 
+                <Button className="amarelo" onClick={() => perguntaRespondida("quase")} >Quase não lembrei</Button>
+                <Button className="verde" onClick={() => perguntaRespondida("certo")} >Zap!</Button>
         </ContainerBotoes>
         </PerguntaAberta>
         )
     }
+    
+    {perguntaResp && (
+        <PerguntaFechada>
+            <TextoPergunta className={statusResp}>Pergunta {numPerg}</TextoPergunta>
+            <img src={"assets/icone_" + statusResp + ".png"}/>
+        </PerguntaFechada>
+        )
+    }
+
     </>   
     )
 }
