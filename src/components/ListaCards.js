@@ -5,7 +5,7 @@ export default function ListaCards({deck, contResp, setContResp}){
     
     
     return (
-        <ul className="lista-perguntas">
+        <ul className="lista-perguntas" data-test="flashcard" >
 	        {deck.map((c, index) => (
             <BotoesCard 
             key={index}

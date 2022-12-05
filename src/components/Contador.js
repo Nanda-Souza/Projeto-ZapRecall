@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export default function Contador({contCards, contResp}){
     return (
-        <FooterConcluidos>
+        <FooterConcluidos data-test="footer">
             {contResp}/{contCards} CONCLUÍDOS
         </FooterConcluidos>
     )

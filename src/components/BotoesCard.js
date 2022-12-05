@@ -32,37 +32,37 @@ export default function BotoesCard({numPerg, question, answer, contResp, setCont
     return (
     <>
     {perguntaVirada && (
-        <PerguntaFechada className="">
+        <PerguntaFechada className="" data-test="flashcard">
             <TextoPergunta className="pergunta">Pergunta {numPerg}</TextoPergunta>
-            <img src="assets/seta_play.png" onClick={perguntaFlashCard}/>
+            <img src="assets/seta_play.png" onClick={perguntaFlashCard} data-test="play-btn"/>
         </PerguntaFechada>
         )
     }
     
     {flashCardPerg && (
-        <PerguntaAberta>
+        <PerguntaAberta data-test="flashcard-text">
             {question}
-            <img src="assets/seta_virar.png" onClick={respostaFlashCard}/>
+            <img src="assets/seta_virar.png" onClick={respostaFlashCard} data-test="turn-btn"/>
         </PerguntaAberta>
         )
     }
     
     {flashCardResp && (
-        <PerguntaAberta>
+        <PerguntaAberta data-test="flashcard-text">
             {answer}
             <ContainerBotoes>
-                <Button className="vermelho" onClick={() => perguntaRespondida("erro")} >Não lembrei</Button> 
-                <Button className="amarelo" onClick={() => perguntaRespondida("quase")} >Quase não lembrei</Button>
-                <Button className="verde" onClick={() => perguntaRespondida("certo")} >Zap!</Button>
+                <Button className="vermelho"  data-test="no-btn" onClick={() => perguntaRespondida("erro")} >Não lembrei </Button> 
+                <Button className="amarelo"  data-test="partial-btn" onClick={() => perguntaRespondida("quase")} >Quase não lembrei</Button>
+                <Button className="verde"  data-test="zap-btn" onClick={() => perguntaRespondida("certo")} >Zap!</Button>
         </ContainerBotoes>
         </PerguntaAberta>
         )
     }
     
     {perguntaResp && (
-        <PerguntaFechada>
+        <PerguntaFechada data-test="flashcard-text">
             <TextoPergunta className={statusResp}>Pergunta {numPerg}</TextoPergunta>
-            <img src={"assets/icone_" + statusResp + ".png"}/>
+            <img src={"assets/icone_" + statusResp + ".png"} />
         </PerguntaFechada>
         )
     }
