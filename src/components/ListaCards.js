@@ -1,12 +1,8 @@
 import { useState } from 'react'
 import BotoesCard from "./BotoesCard"
-import styled from "styled-components"
 
-export default function ListaCards({}){
-const [deck, setDeck] = useState([
-        { numero: 1, question: "O que é JSX?", answer: "Uma extensão da linguagem JavaScript" },
-        { numero: 2, question: "O React é __", answer: "Uma biblioteca JavaScript para construção de interfaces" }   
-    ])      
+export default function ListaCards({deck}){
+    
     
     return (
         <ul className="lista-perguntas">

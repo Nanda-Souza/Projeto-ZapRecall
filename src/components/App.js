@@ -1,18 +1,26 @@
 
+import { useState } from 'react'
 import styled from "styled-components"
 import Logo from './Logo';
 import Contador from './Contador';
 import ListaCards from './ListaCards';
 
+const cards = [
+  { numero: 1, question: "O que é JSX?", answer: "Uma extensão da linguagem JavaScript" },
+    { numero: 2, question: "O React é __", answer: "Uma biblioteca JavaScript para construção de interfaces" }   
+  ]
+
 
 export default function App() {
+  const [deck, setDeck] = useState(cards)  
+  const [contCards, setCont] = useState(cards.length)
+
 
   return (
     <ScreenContainer>
-
       <Logo />
-      <ListaCards />
-      <Contador />
+      <ListaCards deck={deck}/>
+      <Contador contCards={contCards}/>
     </ScreenContainer>
 
   );

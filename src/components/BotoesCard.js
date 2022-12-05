@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { useState } from 'react'
 
 
-export default function BotoesCard({index, numPerg, question, answer}){
+export default function BotoesCard({numPerg, question, answer}){
     const [perguntaVirada, setPerguntaVirada] = useState(true)
     const [perguntaResp, setPerguntaResp] = useState(false)
     const [statusResp, setstatusResp] = useState("")
